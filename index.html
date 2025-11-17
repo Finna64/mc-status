@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Makes it act like a real app -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MC Status">
+
+    <title>Minecraft Server Status</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #2b2b2b;
+            color: white;
+            text-align: center;
+            padding-top: 50px;
+        }
+        #count {
+            font-size: 60px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Minecraft Server</h1>
+    <div id="count">Loading…</div>
+
+    <button onclick="update()">Refresh</button>
+
+    <script>
+        function update() {
+            fetch("https://api.mcsrvstat.us/2/45.125.247.83:7013")
+                .then(res => res.json())
+                .then(data => {
+                    let online = data.players?.online ?? 0;
+                    document.getElementById("count").innerText = online + " online";
+                })
+                .catch(() => {
+                    document.getElementById("count").innerText = "Offline";
+                });
+        }
+
+        update(); // initial load
+        setInterval(update, 10000); // auto-refresh every 10s
+    </script>
+
+</body>
+</html>
