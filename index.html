@@ -45,7 +45,7 @@
 
     <script>
         function update() {
-            fetch("https://api.mcsrvstat.us/2/45.125.247.83:7013")
+            fetch("https://api.mcsrvstat.us/2/[YOUR_SERVER_IP]:[YOUR_SERVER_PORT]")
                 .then(res => res.json())
                 .then(data => {
                     let online = data.players?.online ?? 0;
