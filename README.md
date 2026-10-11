@@ -20,7 +20,10 @@ JavaScript - API integration
 
 **PROJECT STRUCTURE**
 
-mc-status/
+mc-status
+
 ├── index.html
+
 ├── mc-icon.png
+
 └── README.md
